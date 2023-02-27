@@ -1,13 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import SegmentedControl from '@react-native-segmented-control/segmented-control'
+import { StatusBar } from 'expo-status-bar'
+import { useState } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
 export default function App() {
+  const [selectedIndex, setSelectedIndex] = useState(0)
+
+  console.log('selectedIndex', selectedIndex)
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <SegmentedControl
+        values={['One', 'Two']}
+        selectedIndex={selectedIndex}
+        style={{ width: 250, height: 36 }}
+        onChange={e => setSelectedIndex(e.nativeEvent.selectedSegmentIndex)}
+      />
       <StatusBar style="auto" />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -17,4 +28,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
